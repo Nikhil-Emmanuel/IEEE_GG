@@ -1,0 +1,1 @@
+gunicorn app.py:SalesDataBot --bind=0.0.0.0 --timeout 600
