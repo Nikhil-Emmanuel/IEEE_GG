@@ -8,9 +8,9 @@ from azure.storage.blob import BlobServiceClient
 app = Flask(__name__)
 
 # Load your ML model
-model = joblib.load('https://ieeefiles.blob.core.windows.net/ieeegg/model1.pkl')
-model2 = joblib.load('https://ieeefiles.blob.core.windows.net/ieeegg/model2.pkl')
-model3 = joblib.load('https://ieeefiles.blob.core.windows.net/ieeegg/model3.pkl')
+model = joblib.load('model1.pkl')
+model2 = joblib.load('model2.pkl')
+model3 = joblib.load('model3.pkl')
 
 
 # Azure Blob Storage configuration
