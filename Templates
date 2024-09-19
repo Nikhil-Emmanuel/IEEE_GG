@@ -3,26 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales Data Upload</title>
+    <title>Upload CSV</title>
     <style>
         body {
-            background-image: url('https://cdn.pixabay.com/photo/2022/12/09/03/51/big-data-7644530_640.jpg'); /* Replace with a real URL */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
             font-family: Arial, sans-serif;
-            color: #fff;
             text-align: center;
-            padding-top: 50px;
-        }
-        .container {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            border-radius: 8px;
-            display: inline-block;
-        }
-        h1 {
-            margin-bottom: 20px;
+            padding: 50px;
         }
         input[type="file"] {
             margin-bottom: 10px;
@@ -42,13 +28,11 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Upload Your Sales Data</h1>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" accept=".csv" required>
-            <br>
-            <button type="submit">Process CSV</button>
-        </form>
-    </div>
+    <h1>Upload Your CSV File</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required>
+        <br>
+        <button type="submit">Process CSV</button>
+    </form>
 </body>
 </html>
