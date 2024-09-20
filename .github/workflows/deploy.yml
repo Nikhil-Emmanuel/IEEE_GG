@@ -1,0 +1,65 @@
+name: Deploy Static Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment (required for most static site deployments)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Step 3: Install dependencies (if using npm, update this to match your package manager)
+      - name: Install dependencies
+        run: |
+          npm install
+          
+      # Step 4: Build the static website (e.g., for React, Vue, etc.) - Optional
+      - name: Build static site (if needed)
+        run: |
+          npm run build
+
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public # Path to your static files
+
+  process_csv:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Process CSV and display images
+      - name: Process CSV and update result.html
+        run: |
+          # A simple script can be written here to process CSV and manipulate result.html.
+          # You can use Python or Node.js to automate the reading of CSV and insertion of image paths in result.html.
+          
+          # Example: Process CSV file and update result.html with predefined images.
+          python scripts/process_csv.py
+          
+      # Step 3: Commit and push changes to result.html
+      - name: Commit changes to result.html
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add result.html
+          git commit -m "Update result.html with images based on CSV input"
+          git push
